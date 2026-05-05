@@ -1,12 +1,10 @@
 {
-    'name': 'Real Estate Demo 223',
-    'version': '1.12',
+    'name': 'Real Estate',
+    'version': '1.0',
     'depends': ['base'],
-    'author': 'effazbs23',
-    'category': 'Sales',
+    'author': 'brainstation-23',
     'description': """
         A module to manage real estate advertisements.
     """,
-    'application': True,
     'installable': True,
 }
