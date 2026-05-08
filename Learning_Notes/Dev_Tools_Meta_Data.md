@@ -23,3 +23,14 @@ During an operation while on the browser, click on F12. It opens a tab . There f
 **Pointer Tool**
 
 When I need to see any information about any attribute on the screen, I have to turn on the debug tool, and hover over any form field in order to reveal the '?' icon. It reveals the name, label and some more info about the attribute.
+
+## Meta Data
+
+**WorkFlow :** Turn on developer mode first, Go to any form view, Tap on the bug icon and it reveals information after pressing the metadata button.
+
+*Attributes*
+
+* ID	: Use this for raw SQL queries or debugging in the terminal.
+* XML ID	: Use this to reference this record in other XML views or actions.
+* Latest Update : It shows who updated the view and when.
+* No update : False-> It's updatable
