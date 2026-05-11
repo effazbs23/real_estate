@@ -36,6 +36,7 @@
                         <group>
                             <field name="expected_price"/>
                             <field name="selling_price"/>
+                            <field name="best_price"/>
                         </group>
                         <notebook>
                             <page string="Description">
@@ -48,6 +49,7 @@
                                     <field name="garden"/>
                                     <field name="garden_area" string="Garden Area m^2"/>
                                     <field name="garden_orientation"/>
+                                    <field name="total_area" string="Total Area Sqm"/>
                                 </group>
                             </page>
                             <page string="Financial Details">
