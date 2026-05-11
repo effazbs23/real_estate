@@ -1,12 +1,14 @@
 
-from odoo import fields, models
+from odoo import fields,models
 from datetime import date
 from dateutil.relativedelta import relativedelta
+
 
 
 class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = 'Estate Property'
+
     name = fields.Char(required=True)
     description = fields.Text()
     postcode = fields.Char()
