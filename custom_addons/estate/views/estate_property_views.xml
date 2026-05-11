@@ -14,6 +14,7 @@
             </list>
         </field>
     </record>
+
     <record id="estate_property_view_form" model="ir.ui.view">
         <field name="name">estate.property.form</field>
         <field name="model">estate.property</field>
@@ -51,6 +52,12 @@
                             <page string="Financial Details">
                                 <group>
                                     <field name="expected_price" string="I'm Expecting"/>
+                                </group>
+                            </page>
+                            <page string="Buyer and Seller info">
+                                <group>
+                                    <field name="salesperson_id" string="Salesperson : "/>
+                                    <field name="buyer_id" string="Buyer : "/>
                                 </group>
                             </page>
                         </notebook>
