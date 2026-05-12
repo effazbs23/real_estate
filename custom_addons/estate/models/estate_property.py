@@ -1,7 +1,7 @@
 from odoo import fields, models, api
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError,ValidationError
 
 
 class EstateProperty(models.Model):
@@ -39,7 +39,7 @@ class EstateProperty(models.Model):
     _sql_constraints = [
         (
             'selling_price',
-            'CHECK(selling_price >=0)',
+            'CHECK(selling_price >= 0.0)',
             'Selling Price Must Be Positive'
         )
     ]
@@ -98,3 +98,11 @@ class EstateProperty(models.Model):
                 raise UserError('Cannot cancel sold property')
             record.state = 'cancelled'
         return True
+
+    @api.onchange("selling_price")
+    @api.constrains('expected_price','selling_price')
+    def _validate_selling_price(self):
+        for record in self:
+            _value = (record.selling_price * 100) / record.expected_price
+            if _value < 90:
+                raise ValidationError("Selling price must be at least 90% of the expected price")
