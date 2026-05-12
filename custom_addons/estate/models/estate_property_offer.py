@@ -9,6 +9,7 @@ class EstatePropertyOffer(models.Model):
     _description = 'Estate Property Offers Model'
 
     price = fields.Float()
+    _order = "price desc"
     _sql_constrains = [
         (
             'price',
