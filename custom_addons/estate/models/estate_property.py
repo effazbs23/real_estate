@@ -1,8 +1,7 @@
-
 from odoo import fields, models, api
 from datetime import date
 from dateutil.relativedelta import relativedelta
-
+from odoo.exceptions import UserError
 
 
 class EstateProperty(models.Model):
@@ -26,7 +25,8 @@ class EstateProperty(models.Model):
         copy=False,
         default='new',
     )
-    date_availability = fields.Date(string="Available From", copy=False, default=lambda self: date.today() + relativedelta(months=3))
+    date_availability = fields.Date(string="Available From", copy=False,
+                                    default=lambda self: date.today() + relativedelta(months=3))
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(string="Selling Price", copy=False, readonly=True)
     bedrooms = fields.Integer(default=2)
@@ -42,14 +42,14 @@ class EstateProperty(models.Model):
     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
     salesperson_id = fields.Many2one("res.users", string="Salesperson", default=lambda self: self.env.user)
     buyer_id = fields.Many2one("res.partner", string="Buyer", copy=False)
-    tag_ids = fields.Many2many("estate.property.tag",string="Tags")
-    offer_ids = fields.One2many("estate.property.offer","property_id",string="Offers")
-    total_area = fields.Integer(string="Total Area",compute="_compute_area")
+    tag_ids = fields.Many2many("estate.property.tag", string="Tags")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
+    total_area = fields.Integer(string="Total Area", compute="_compute_area")
 
-    @api.depends("living_area","garden_area")
+    @api.depends("living_area", "garden_area")
     def _compute_area(self):
         for record in self:
-            record.total_area= record.living_area + record.garden_area
+            record.total_area = record.living_area + record.garden_area
 
     best_price = fields.Integer(string="Best Price", compute="_compute_best_price")
 
@@ -71,3 +71,16 @@ class EstateProperty(models.Model):
             self.garden_area = False
             self.garden_orientation = False
 
+    def action_sell(self):
+        for record in self:
+            if record.state == 'cancelled':
+                raise UserError('Cannot sell cancelled property')
+            record.state = 'sold'
+        return True
+
+    def action_cancel(self):
+        for record in self:
+            if record.state == 'sold':
+                raise UserError('Cannot cancel sold property')
+            record.state = 'cancelled'
+        return True
