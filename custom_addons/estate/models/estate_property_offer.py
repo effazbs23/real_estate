@@ -1,6 +1,7 @@
 import datetime as dt
 
 from odoo import fields, models,api
+from odoo.exceptions import UserError
 
 
 class EstatePropertyOffer(models.Model):
@@ -27,3 +28,17 @@ class EstatePropertyOffer(models.Model):
         for record in self:
             base_date = record.create_date.date() if record.create_date else fields.Date.today()
             record.validity = (record.date_deadline - base_date).days
+
+    def action_accept(self):
+        for record in self:
+            if record.status == 'rejected':
+                raise UserError('Cannot Accept Refused Offer')
+            record.status = 'accepted'
+        return True
+
+    def action_refuse(self):
+        for record in self:
+            if record.status == 'accepted':
+                raise UserError('Cannot refuse accepted offer')
+            record.status = 'refused'
+        return True
