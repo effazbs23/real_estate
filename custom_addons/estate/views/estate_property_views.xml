@@ -3,7 +3,7 @@
         <field name="name">estate.property.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Properties">
+            <list string="Properties" decoration-success="state in ('offer_received','offer_accepted')" decoration-bf="state=='offer_accepted'" decoration-muted="state=='sold'">
                 <field name="name" string="Title"/>
                 <field name="postcode"/>
                 <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold,cancelled"/>
