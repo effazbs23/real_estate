@@ -54,8 +54,8 @@
                                     <field name="facades"/>
                                     <field name="garage"/>
                                     <field name="garden"/>
-                                    <field name="garden_area" string="Garden Area m^2"/>
-                                    <field name="garden_orientation"/>
+                                    <field name="garden_area" string="Garden Area m^2" invisible="garden==False"/>
+                                    <field name="garden_orientation" invisible="garden==False"/>
                                     <field name="total_area" string="Total Area Sqm"/>
                                 </group>
                             </page>
@@ -72,7 +72,7 @@
                             </page>
                             <page string="Offers">
                                 <group>
-                                    <field name="offer_ids"/>
+                                    <field name="offer_ids" readonly="state in ('sold','cancelled', 'offer_accepted')"/>
                                 </group>
                             </page>
                         </notebook>
