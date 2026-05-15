@@ -6,7 +6,7 @@
             <list string="Properties" decoration-success="state in ('offer_received','offer_accepted')" decoration-bf="state=='offer_accepted'" decoration-muted="state=='sold'">
                 <field name="name" string="Title"/>
                 <field name="postcode"/>
-                <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold,cancelled"/>
+                <field name="state"/>
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                 <field name="property_type_id" widget="many2one_tags"/>
                 <field name="bedrooms"/>
@@ -34,7 +34,7 @@
                     </div>
                     <group>
                         <group>
-                            <field name="state"/>
+                            <field name="state"  widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold,cancelled"/>
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                             <field name="property_type_id" widget="many2one_tags" options="{'no_create':True, 'no_edit':True}"/>
                             <field name="postcode"/>
@@ -92,6 +92,8 @@
                 <field name="living_area" string="Living Area" filter_domain="[('living_area', '>=', self)]"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
+                <field name="best_price"/>
+                <field name="garden_area"/>
                 <field name="date_availability" string="Available From"/>
                 <separator/>
                 <filter name="available" string="Available" domain="[('state','in',('new','offer_received'))]"/>
