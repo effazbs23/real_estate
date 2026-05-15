@@ -104,7 +104,7 @@ class EstateProperty(models.Model):
     @api.constrains('expected_price','selling_price')
     def _validate_selling_price(self):
         for record in self:
-            if record.expected_price * 0.9 > record.selling_price:
+            if record.selling_price != 0 and record.expected_price * 0.9 > record.selling_price:
                 raise ValidationError("Selling price must be at least 90% of the expected price")
 
     @api.ondelete(at_uninstall=False)
