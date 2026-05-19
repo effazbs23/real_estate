@@ -116,6 +116,17 @@ class EstateProperty(models.Model):
     @api.model
     def _inflation_handling_service(self):
         records = self.search([])
+        fail_count = 0
+        success_count = 0
         for record in records:
-            record.expected_price += 20
+            try:
+                with self.env.cr.savepoint():
+                    record.expected_price -= 2000
+                    success_count += 1
+            except Exception as e:
+                fail_count += 1
+                print(f"Exception on {record.id} : {str(e)}")
+                continue
+
+
 
