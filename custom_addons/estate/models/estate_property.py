@@ -66,16 +66,16 @@ class EstateProperty(models.Model):
         for record in self:
             record.total_area = record.living_area + record.garden_area
 
-    best_price = fields.Integer(string="Best Price", compute="_compute_best_price")
+    best_price = fields.Integer(string="Best Price", compute="_compute_best_price", store=True)
 
     @api.depends("offer_ids.price")
     def _compute_best_price(self):
         for record in self:
             prices = record.offer_ids.mapped("price")
-        if prices:
-            record.best_price = max(prices)
-        else:
-            record.best_price = 0.0
+            if prices:
+                record.best_price = max(prices)
+            else:
+                record.best_price = 0.0
 
     @api.onchange("garden")
     def _onchange_garden(self):
@@ -112,3 +112,10 @@ class EstateProperty(models.Model):
         for record in self:
             if record.state not in ('new','cancelled'):
                 raise UserError("Cannot delete property which is not new or cancelled")
+
+    @api.model
+    def _inflation_handling_service(self):
+        records = self.search([])
+        for record in records:
+            record.expected_price += 20
+
