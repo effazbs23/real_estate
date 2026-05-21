@@ -8,6 +8,7 @@
     """,
     'data': [
         'security/ir.model.access.csv',
+        'data/estate_property_type_data.xml',
         'data/estate_inflation_cron.xml',
         'views/estate_property_views.xml',
         'views/estate_property_type_views.xml',
