@@ -1,7 +1,7 @@
 {
     'name': 'Real Estate',
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base','mail'],
     'author': 'BRAIN STATION 23',
     'description': """
         A module to manage real estate advertisements.
@@ -16,6 +16,9 @@
         'views/estate_property_offer_views.xml',
         'views/res_users_views.xml',
         'views/estate_menus.xml'
+    ],
+    'demo': [
+        'demo/estate_property_demo.xml',
     ],
 
     'application': True,

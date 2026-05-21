@@ -12,6 +12,7 @@ class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = 'Estate Property'
     _order = "id desc"
+    _inherit = ['mail.thread','mail.activity.mixin']
 
     name = fields.Char(required=True)
     description = fields.Text()
@@ -32,7 +33,7 @@ class EstateProperty(models.Model):
     )
     date_availability = fields.Date(string="Available From", copy=False,
                                     default=lambda self: date.today() + relativedelta(months=3))
-    expected_price = fields.Float(required=True)
+    expected_price = fields.Float(required=True, tracking=True)
     selling_price = fields.Float(string="Selling Price", copy=False, readonly=True)
     _sql_constraints = [
         (

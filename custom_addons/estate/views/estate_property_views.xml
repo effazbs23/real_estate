@@ -81,6 +81,14 @@
                         </notebook>
                     </group>
                 </sheet>
+
+                <sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
             </form>
         </field>
     </record>
@@ -119,7 +127,9 @@
                     <t t-name="kanban-box">
                         <div>
                             <field name="name"/>
-                            <div> Expected Price : <field name="expected_price"/></div>
+                            <div>Expected Price :
+                                <field name="expected_price"/>
+                            </div>
                             <field name="tag_ids"/>
                             <div t-if="record.state.raw_value == 'offer_received'">
                                 Best Price :
