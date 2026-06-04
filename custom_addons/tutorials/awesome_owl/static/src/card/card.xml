@@ -1,0 +1,17 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.Card">
+        <div class="card d-inline-block border">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <t t-esc="props.title"/>
+                </h5>
+                <p class="card-text">
+                    <t t-esc="props.content"/>
+                </p>
+                <p class="border me-2">
+                    Hellooooo!
+                </p>
+            </div>
+        </div>
+    </t>
+</templates>

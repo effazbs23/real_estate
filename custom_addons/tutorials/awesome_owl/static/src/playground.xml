@@ -8,6 +8,10 @@
                 <Counter/>
                 <Counter/>
             </div>
+            <div>
+                <Card title="'card-1'" content="'Content of card 1'"/>
+                <Card title="'card-2'" content="'Content of card 2'"/>
+            </div>
         </div>
     </t>
 
