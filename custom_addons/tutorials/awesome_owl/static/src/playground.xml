@@ -5,8 +5,9 @@
         <div class="p-3">
             See My Counter
             <div>
-                <Counter/>
-                <Counter/>
+                <Counter a.bind="incrementSum"/>
+                <Counter a.bind="incrementSum"/>
+                <div>The sum is: <t t-esc="sum.value"/></div>
             </div>
             <div>
                 <Card title="2" content="str1" />
