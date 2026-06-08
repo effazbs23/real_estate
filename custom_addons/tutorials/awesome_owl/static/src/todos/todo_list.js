@@ -23,4 +23,8 @@ export class TodoList extends Component{
             ev.target.value = "";
         }
     }
+
+    toggleTodo(todo) {
+        todo.isCompleted = !todo.isCompleted;
+    }
 }

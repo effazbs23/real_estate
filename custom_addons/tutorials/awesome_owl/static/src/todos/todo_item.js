@@ -10,7 +10,8 @@ export class TodoItem extends Component{
                 description: String,
                 isCompleted: Boolean
             }
-        }
+        },
+        toggleTodo: Function
     };
 
 
