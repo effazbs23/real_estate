@@ -21,14 +21,16 @@
                 </thead>
                 <tbody>
                     <tr t-if="totalCount == 0">
-                        <td>No attendance records found.</td>
+                        <td colspan="4" class="text-center text-muted">No attendance records found.</td>
                     </tr>
-                    <tr t-else="" t-foreach="filteredData" t-as="row" t-key="row.id" t-att-class="getRowColor(row.hours)">
+                    <t t-else="" t-foreach="filteredData" t-as="row" t-key="row.id">
+                        <tr t-att-class="getRowColor(row.hours)">
                             <td><t t-esc="row.name"/></td>
                             <td><t t-esc="row.check_in"/></td>
                             <td><t t-esc="row.check_out"/></td>
                             <td><t t-esc="row.hours"/></td>
-                    </tr>
+                        </tr>
+                    </t>
                 </tbody>
             </table>
 
