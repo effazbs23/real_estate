@@ -7,6 +7,7 @@ export class AttendanceDashboard extends Component {
     setup() {
         this.data = useState(
             {
+                searchQuery: "",
                 rows: [
                     {
                         id: 1,
@@ -25,6 +26,20 @@ export class AttendanceDashboard extends Component {
                 ]
             }
         );
+    }
+
+    get filteredData() {
+        const query = this.data.searchQuery.toLowerCase();
+        if(!query){
+            return this.data.rows;
+        }
+        return this.data.rows.filter(
+            row=> row.name.toLowerCase().includes(query)
+        );
+    }
+
+    onSearchInput(ev){
+        this.data.searchQuery = ev.target.value;
     }
 
 

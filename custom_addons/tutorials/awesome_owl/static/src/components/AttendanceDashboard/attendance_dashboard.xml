@@ -1,5 +1,14 @@
 <templates xml:space="preserve">
     <t t-name="awesome_owl.attendanceDashboard">
+        <div class="border p-2 m-2 ">
+            <input type="text"
+                   class=""
+                   placeholder="Search"
+                   t-att-value="data.searchQuery"
+                   t-on-input="onSearchInput"
+            />
+        </div>
+
         <div class="m-3 p-2 border">
             <table class="table">
                 <thead class="table-dark">
@@ -11,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-foreach="data.rows" t-as="row" t-key="row.id">
+                    <t t-foreach="filteredData" t-as="row" t-key="row.id">
                         <tr>
                             <td><t t-esc="row.name"/></td>
                             <td><t t-esc="row.check_in"/></td>
