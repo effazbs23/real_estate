@@ -28,7 +28,7 @@
                             <td><t t-esc="row.name"/></td>
                             <td><t t-esc="row.check_in"/></td>
                             <td><t t-esc="row.check_out"/></td>
-                            <td><t t-esc="row.hours"/></td>
+                            <td><t t-esc="row.hours.toFixed(2)"/></td>
                         </tr>
                     </t>
                 </tbody>

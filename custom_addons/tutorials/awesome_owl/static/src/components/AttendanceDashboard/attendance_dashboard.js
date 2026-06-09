@@ -92,13 +92,17 @@ export class AttendanceDashboard extends Component {
     }
 
     get totalWorkHours() {
-        return this.filteredData.reduce(
+        const total = this.filteredData.reduce(
             (sum, row) => sum + row.hours, 0
         );
+        return total.toFixed(2);
     }
 
     get avgWorkHours() {
-        return this.totalCount ? Math.round(this.totalWorkHours / this.totalCount) : 0;
+        const total = this.filteredData.reduce(
+            (sum, row) => sum + row.hours, 0
+        );
+        return this.totalCount ? (total / this.totalCount).toFixed(2) : "0.00";
     }
 
 

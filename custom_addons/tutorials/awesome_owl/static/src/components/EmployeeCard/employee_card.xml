@@ -6,7 +6,7 @@
                 <t t-esc="props.emp.employeeName"/>
                 <br/>
                 Working Hours:
-                <t t-esc="props.emp.todayHour"/>
+                <t t-esc="props.emp.todayHour.toFixed(2)"/>
                 <br/>
                 Present:
                 <t t-esc="props.emp.attendanceStatus"/>
