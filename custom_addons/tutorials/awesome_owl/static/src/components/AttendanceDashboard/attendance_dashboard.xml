@@ -30,6 +30,17 @@
                     </t>
                 </tbody>
             </table>
+
+            <div class="m-2 p-2 text-center">
+            <p>
+                Total Employees: <t t-esc="totalCount"/>
+                <br/>
+                Total Worked Hours: <t t-esc="totalWorkHours"/>
+                <br/>
+                Average Hours: <t t-esc="avgWorkHours"/>
+            </p>
         </div>
+        </div>
+
     </t>
 </templates>
