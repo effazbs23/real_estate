@@ -10,6 +10,16 @@
                         <th>Worked Hours</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <t t-foreach="data.rows" t-as="row" t-key="row.id">
+                        <tr>
+                            <td><t t-esc="row.name"/></td>
+                            <td><t t-esc="row.check_in"/></td>
+                            <td><t t-esc="row.check_out"/></td>
+                            <td><t t-esc="row.hours"/></td>
+                        </tr>
+                    </t>
+                </tbody>
             </table>
         </div>
     </t>
