@@ -17,7 +17,7 @@ export class EmployeeCard extends Component {
     };
 
     getAttendanceColor(){
-        if(this.attendanceStatus === true){
+        if(this.props.emp.attendanceStatus === true){
             return "bg-success-subtle";
         }
         return "bg-danger-subtle";
