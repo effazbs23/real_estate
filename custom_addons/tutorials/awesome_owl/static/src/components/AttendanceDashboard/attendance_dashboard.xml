@@ -20,27 +20,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <t t-foreach="filteredData" t-as="row" t-key="row.id">
-                        <tr>
+                    <tr t-foreach="filteredData" t-as="row" t-key="row.id" t-att-class="getRowColor(row.hours)">
                             <td><t t-esc="row.name"/></td>
                             <td><t t-esc="row.check_in"/></td>
                             <td><t t-esc="row.check_out"/></td>
                             <td><t t-esc="row.hours"/></td>
-                        </tr>
-                    </t>
+                    </tr>
                 </tbody>
             </table>
 
             <div class="m-2 p-2 text-center">
-            <p>
+                <p>
                 Total Employees: <t t-esc="totalCount"/>
-                <br/>
-                Total Worked Hours: <t t-esc="totalWorkHours"/>
-                <br/>
-                Average Hours: <t t-esc="avgWorkHours"/>
-            </p>
+                    <br/>
+                    Total Worked Hours:
+                    <t t-esc="totalWorkHours"/>
+                    <br/>
+                    Average Hours:
+                    <t t-esc="avgWorkHours"/>
+                </p>
+            </div>
         </div>
-        </div>
-
     </t>
 </templates>
