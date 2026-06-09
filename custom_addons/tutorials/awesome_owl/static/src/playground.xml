@@ -3,16 +3,7 @@
 
     <t t-name="awesome_owl.playground">
         <div class="p-3">
-            See My Counter
-            <div>
-                <Counter a.bind="incrementSum"/>
-                <Counter a.bind="incrementSum"/>
-                <div>The sum is: <t t-esc="sum.value"/></div>
-            </div>
-            <div>
-                <Card title="2" content="str1" />
-                <Card title="5" content="str2" />
-            </div>
+            <AttendanceDashboard/>
         </div>
     </t>
 
