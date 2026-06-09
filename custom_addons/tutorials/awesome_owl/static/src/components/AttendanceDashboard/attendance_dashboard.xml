@@ -1,0 +1,16 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.attendanceDashboard">
+        <div class="m-3 p-2 border">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Employee</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Worked Hours</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </t>
+</templates>
