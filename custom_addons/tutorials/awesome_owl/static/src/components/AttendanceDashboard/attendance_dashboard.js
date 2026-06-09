@@ -14,7 +14,7 @@ export class AttendanceDashboard extends Component {
                         name: "John Doe",
                         check_in: "2026-06-08 09:00:00",
                         check_out: "2026-06-08 18:00:00",
-                        hours: 9
+                        hours: 8
                     },
                     {
                         id: 2,
@@ -23,36 +23,54 @@ export class AttendanceDashboard extends Component {
                         check_out: "2026-06-08 17:30:00",
                         hours: 9
                     },
+                    {
+                        id: 3,
+                        name: "Jack",
+                        check_in: "2026-06-08 08:30:00",
+                        check_out: "2026-06-08 17:30:00",
+                        hours: 6.5
+                    },
                 ]
             }
         );
     }
 
+    getRowColor(hours){
+        if(hours >= 9){
+            return "table-success";
+        }
+        else if(hours >= 8){
+            return "table-info";
+        }
+        return "table-danger";
+    }
     get filteredData() {
         const query = this.data.searchQuery.toLowerCase();
-        if(!query){
+        if (!query) {
             return this.data.rows;
         }
         return this.data.rows.filter(
-            row=> row.name.toLowerCase().includes(query)
+            row => row.name.toLowerCase().includes(query)
         );
     }
 
-    onSearchInput(ev){
+
+    onSearchInput(ev) {
         this.data.searchQuery = ev.target.value;
     }
 
     get totalCount() {
         return this.filteredData.length;
     }
+
     get totalWorkHours() {
         return this.filteredData.reduce(
-            (sum,row) => sum + row.hours, 0
+            (sum, row) => sum + row.hours, 0
         );
     }
 
     get avgWorkHours() {
-        return Math.round(this.totalWorkHours / this.totalCount);
+        return this.totalCount ? Math.round (this.totalWorkHours / this.totalCount) : 0;
     }
 
 
