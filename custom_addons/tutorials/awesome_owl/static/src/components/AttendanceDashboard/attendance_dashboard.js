@@ -42,5 +42,18 @@ export class AttendanceDashboard extends Component {
         this.data.searchQuery = ev.target.value;
     }
 
+    get totalCount() {
+        return this.filteredData.length;
+    }
+    get totalWorkHours() {
+        return this.filteredData.reduce(
+            (sum,row) => sum + row.hours, 0
+        );
+    }
+
+    get avgWorkHours() {
+        return Math.round(this.totalWorkHours / this.totalCount);
+    }
+
 
 }
