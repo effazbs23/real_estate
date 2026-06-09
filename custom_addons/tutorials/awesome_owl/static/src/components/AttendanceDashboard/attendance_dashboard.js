@@ -1,49 +1,77 @@
 /** @odoo-module **/
-import {Component, useState} from "@odoo/owl";
+import {Component, useState, onWillStart} from "@odoo/owl";
+import {useService} from "@web/core/utils/hooks";
 
 export class AttendanceDashboard extends Component {
     static template = "awesome_owl.attendanceDashboard";
 
     setup() {
+
+        this.orm = useService("orm");
         this.data = useState(
             {
                 searchQuery: "",
                 rows: [
-                    {
-                        id: 1,
-                        name: "John Doe",
-                        check_in: "2026-06-08 09:00:00",
-                        check_out: "2026-06-08 18:00:00",
-                        hours: 8
-                    },
-                    {
-                        id: 2,
-                        name: "Alice",
-                        check_in: "2026-06-08 08:30:00",
-                        check_out: "2026-06-08 17:30:00",
-                        hours: 9
-                    },
-                    {
-                        id: 3,
-                        name: "Jack",
-                        check_in: "2026-06-08 08:30:00",
-                        check_out: "2026-06-08 17:30:00",
-                        hours: 6.5
-                    },
+                    // {
+                    //     id: 1,
+                    //     name: "John Doe",
+                    //     check_in: "2026-06-08 09:00:00",
+                    //     check_out: "2026-06-08 18:00:00",
+                    //     hours: 9
+                    // },
+                    // {
+                    //     id: 2,
+                    //     name: "Alice",
+                    //     check_in: "2026-06-08 08:30:00",
+                    //     check_out: "2026-06-08 17:30:00",
+                    //     hours: 9
+                    // }
+
                 ]
+            }
+        );
+
+        onWillStart(
+            async ()=>{
+                await this.loadData();
             }
         );
     }
 
-    getRowColor(hours){
-        if(hours >= 9){
-            return "table-success";
+    async loadData() {
+        try {
+            const result = await this.orm.searchRead(
+                "hr.attendance",
+                [],
+                ["id", "employee_id", "check_in", "check_out", "worked_hours"]
+
+            );
+
+
+            this.data.rows = result.map(
+                record => ({
+                    id: record.id,
+                    name: record.employee_id ? record.employee_id[1] : "Unknown",
+                    check_in: record.check_in,
+                    check_out: record.check_out || "Still checked in",
+                    hours: record.worked_hours || 0
+                })
+            );
         }
-        else if(hours >= 8){
+        catch(err){
+            console.error("Failed to load data", err);
+        }
+    }
+
+    getRowColor(hours) {
+        if (hours >= 9) {
+            return "table-success";
+        } else if (hours >= 8) {
             return "table-info";
         }
         return "table-danger";
     }
+
     get filteredData() {
         const query = this.data.searchQuery.toLowerCase();
         if (!query) {
@@ -70,7 +98,7 @@ export class AttendanceDashboard extends Component {
     }
 
     get avgWorkHours() {
-        return this.totalCount ? Math.round (this.totalWorkHours / this.totalCount) : 0;
+        return this.totalCount ? Math.round(this.totalWorkHours / this.totalCount) : 0;
     }
 
 
