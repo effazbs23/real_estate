@@ -20,7 +20,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr t-foreach="filteredData" t-as="row" t-key="row.id" t-att-class="getRowColor(row.hours)">
+                    <tr t-if="totalCount == 0">
+                        <td>No attendance records found.</td>
+                    </tr>
+                    <tr t-else="" t-foreach="filteredData" t-as="row" t-key="row.id" t-att-class="getRowColor(row.hours)">
                             <td><t t-esc="row.name"/></td>
                             <td><t t-esc="row.check_in"/></td>
                             <td><t t-esc="row.check_out"/></td>
