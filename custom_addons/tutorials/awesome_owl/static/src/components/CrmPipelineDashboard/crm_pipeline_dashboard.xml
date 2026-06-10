@@ -25,7 +25,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="filteredData" t-as="row" t-key="row.id">
+                        <t t-if="TotalLeads === 0">
+                            <tr>No leads found matching your criteria. Try adjusting the search or stage filter.</tr>
+                        </t>
+                        <t t-else="" t-foreach="filteredData" t-as="row" t-key="row.id">
                             <tr>
                                 <td t-esc="row.name"/>
                                 <td t-esc="row.salesperson"/>
