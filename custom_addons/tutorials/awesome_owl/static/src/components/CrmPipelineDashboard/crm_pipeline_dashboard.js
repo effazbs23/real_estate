@@ -1,6 +1,6 @@
 /**@odoo-module**/
 
-import {Component, useState, onWillStart, onMounted, onPatched} from "@odoo/owl";
+import {Component, useState, onWillStart, onMounted, onPatched, onWillUnmount} from "@odoo/owl";
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -31,6 +31,12 @@ export class CrmPipelineDashboard extends Component {
             () => {
                 console.log(this.filteredData.length);
                 // this.totalLeads = this.filteredData.length;
+            }
+        );
+        onWillUnmount(
+            () => {
+                const logTime = Date.now() - this.mountedAt;
+                console.log("Session Duration: ", logTime);
             }
         );
 
