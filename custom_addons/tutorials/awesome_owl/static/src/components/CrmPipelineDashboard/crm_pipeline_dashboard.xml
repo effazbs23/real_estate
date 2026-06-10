@@ -37,6 +37,30 @@
                     </tbody>
                 </table>
             </div>
+            <div class="border m-2 p-2">
+                <table class="table ">
+                    <thead class="table-dark">
+                        <th>
+                            <td>KPI Card</td>
+                            <td>Computation</td>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Leads</td> <td t-esc="TotalLeads"/>
+                        </tr>
+                        <tr>
+                            <td>Pipeline Value</td> <td t-esc="PipelineValue"/>
+                        </tr>
+                        <tr>
+                            <td>Won Revenue</td> <td t-esc="WonRevenue"/>
+                        </tr>
+                        <tr>
+                            <td>Avg Probability</td> <td t-esc="AvgProbability"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </t>
 </templates>
