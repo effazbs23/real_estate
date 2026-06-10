@@ -2,6 +2,9 @@
     <t t-name="awesome_owl.crm_pipeline_dashboard">
         <div class="p-2 m-2">
             <div class="border">
+                <input type="text" placeholder="Search..." t-on-input="onSearchInput" t-att-value="data.searchQuery"/>
+            </div>
+            <div class="border">
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
@@ -13,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="data.rows" t-as="row" t-key="row.id">
+                        <t t-foreach="filteredData" t-as="row" t-key="row.id">
                             <tr>
                                 <td t-esc="row.name"/>
                                 <td t-esc="row.salesperson"/>

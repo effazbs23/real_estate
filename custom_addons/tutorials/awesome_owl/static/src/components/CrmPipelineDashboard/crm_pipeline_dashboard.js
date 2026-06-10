@@ -9,7 +9,8 @@ export class CrmPipelineDashboard extends Component {
     setup() {
 
         this.data = useState({
-            rows:[]
+            searchQuery:""
+            ,rows:[]
         });
         onWillStart(async () => {
            console.log("Starting...");
@@ -44,6 +45,21 @@ export class CrmPipelineDashboard extends Component {
                     probability: 0
                 }
             ];
+    }
+
+    get filteredData(){
+        const query = this.data.searchQuery.toLowerCase();
+        if(!query){
+            return this.data.rows;
+        }
+        return this.data.rows.filter(
+            row => row.salesperson.toLowerCase().includes(query) |
+                row.name.toLowerCase().includes(query)
+        );
+    }
+
+    onSearchInput(ev){
+        this.data.searchQuery = ev.target.value;
     }
 
 
