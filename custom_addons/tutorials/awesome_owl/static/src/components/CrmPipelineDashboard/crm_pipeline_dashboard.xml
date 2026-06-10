@@ -1,0 +1,7 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.crm_pipeline_dashboard">
+        <div class="p-2 m-2">
+            <h1>HEllO</h1>
+        </div>
+    </t>
+</templates>
