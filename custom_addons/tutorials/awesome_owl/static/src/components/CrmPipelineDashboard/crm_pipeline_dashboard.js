@@ -1,6 +1,6 @@
 /**@odoo-module**/
 
-import {Component, useState, onWillStart, onMounted} from "@odoo/owl";
+import {Component, useState, onWillStart, onMounted, onPatched} from "@odoo/owl";
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 export class CrmPipelineDashboard extends Component {
@@ -24,6 +24,11 @@ export class CrmPipelineDashboard extends Component {
             this.mountedAt = time;
             console.log("Dashboard Ready...");
         })
+        onPatched(
+            () => {
+                console.log(this.filteredData.length);
+            }
+        );
 
 
     }
