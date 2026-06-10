@@ -1,7 +1,30 @@
 <templates xml:space="preserve">
     <t t-name="awesome_owl.crm_pipeline_dashboard">
         <div class="p-2 m-2">
-            <h1>HEllO</h1>
+            <div class="border">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                        <th>Lead/Opportunity</th>
+                            <th>Salesperson</th>
+                            <th>Stage</th>
+                            <th>Value (USD)</th>
+                            <th>Probability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data.rows" t-as="row" t-key="row.id">
+                            <tr>
+                                <td t-esc="row.name"/>
+                                <td t-esc="row.salesperson"/>
+                                <td t-esc="row.stage"/>
+                                <td t-esc="row.value"/>
+                                <td t-esc="row.probability"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </t>
 </templates>
