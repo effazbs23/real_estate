@@ -1,14 +1,26 @@
 /**@odoo-module**/
 
-import {Component, useState} from "@odoo/owl";
+import {Component, useState, onWillStart} from "@odoo/owl";
 
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 export class CrmPipelineDashboard extends Component {
     static template = "awesome_owl.crm_pipeline_dashboard";
 
     setup() {
-        this.data = useState({
 
-            rows: [
+        this.data = useState({
+            rows:[]
+        });
+        onWillStart(async () => {
+           console.log("Starting...");
+            await delay(500);
+           this.initialize();
+        });
+
+    }
+
+    initialize() {
+            this.data.rows = [
                 {
                     id: 1, name: "Acme Corp Deal", salesperson: "Alice", stage: "New", value: 12000,
                     probability: 20
@@ -26,7 +38,8 @@ export class CrmPipelineDashboard extends Component {
                     id: 5, name: "Stark Industries", salesperson: "Bob", stage: "Lost", value: 60000,
                     probability: 0
                 }
-            ]
-        });
+            ];
     }
+
+
 }
