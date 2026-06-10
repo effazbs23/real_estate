@@ -9,9 +9,11 @@ export class CrmPipelineDashboard extends Component {
     setup() {
 
         this.data = useState({
-            searchQuery:""
-            ,rows:[]
+            searchQuery:"",
+            rows:[],
+            stageQuery: "All"
         });
+        this.stages = ["All","New", "Qualified", "Proposition", "Won", "Lost"];
         onWillStart(async () => {
            console.log("Starting...");
             await delay(500);
@@ -22,6 +24,7 @@ export class CrmPipelineDashboard extends Component {
             this.mountedAt = time;
             console.log("Dashboard Ready...");
         })
+
 
     }
 
@@ -49,18 +52,28 @@ export class CrmPipelineDashboard extends Component {
 
     get filteredData(){
         const query = this.data.searchQuery.toLowerCase();
-        if(!query){
-            return this.data.rows;
-        }
-        return this.data.rows.filter(
-            row => row.salesperson.toLowerCase().includes(query) |
-                row.name.toLowerCase().includes(query)
-        );
+        const stage = this.data.stageQuery.toLowerCase();
+
+        return this.data.rows.filter( row => {
+            const matchesSearch =
+                !query ||
+                row.name.toLowerCase().includes(query) ||
+                row.salesperson.toLowerCase().includes(query);
+
+            const matchesStage =
+                !stage ||
+                stage === "all" ||
+                row.stage.toLowerCase() === stage;
+
+            return matchesStage && matchesSearch;
+        });
     }
 
     onSearchInput(ev){
         this.data.searchQuery = ev.target.value;
     }
-
+    onStageChange(ev){
+        this.data.stageQuery = ev.target.value;
+    }
 
 }

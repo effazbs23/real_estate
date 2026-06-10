@@ -4,6 +4,15 @@
             <div class="border">
                 <input type="text" placeholder="Search..." t-on-input="onSearchInput" t-att-value="data.searchQuery"/>
             </div>
+            <div>
+                <select t-on-change="onStageChange">
+                    <t t-foreach="stages" t-as="stage" t-key="stage">
+                        <option t-att-value="stage" t-att-selected="stage === data.stageQuery">
+                            <t t-esc="stage"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
             <div class="border">
                 <table class="table">
                     <thead class="table-dark">
