@@ -1,11 +1,12 @@
 <templates xml:space="preserve">
     <t t-name="awesome_owl.crm_pipeline_dashboard">
         <div class="p-2 m-2">
-            <div class="border">
-                <input type="text" placeholder="Search..." t-on-input="onSearchInput" t-att-value="data.searchQuery"/>
+            <div class="border mb-2 p-2">
+                <input type="text" class="form-control" placeholder="Search..." t-on-input="onSearchInput" t-att-value="data.searchQuery"/>
             </div>
-            <div>
-                <select t-on-change="onStageChange">
+
+            <div class="mb-2 p-2">
+                <select class="form-select" t-on-change="onStageChange">
                     <t t-foreach="stages" t-as="stage" t-key="stage">
                         <option t-att-value="stage" t-att-selected="stage === data.stageQuery">
                             <t t-esc="stage"/>
@@ -13,11 +14,12 @@
                     </t>
                 </select>
             </div>
-            <div class="border">
+
+            <div class="border mb-3">
                 <table class="table">
                     <thead class="table-dark">
                         <tr>
-                        <th>Lead/Opportunity</th>
+                            <th>Lead/Opportunity</th>
                             <th>Salesperson</th>
                             <th>Stage</th>
                             <th>Value (USD)</th>
@@ -26,13 +28,21 @@
                     </thead>
                     <tbody>
                         <t t-if="TotalLeads === 0">
-                            <tr>No leads found matching your criteria. Try adjusting the search or stage filter.</tr>
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">
+                                    No leads found matching your criteria. Try adjusting the search or stage filter.
+                                </td>
+                            </tr>
                         </t>
                         <t t-else="" t-foreach="filteredData" t-as="row" t-key="row.id">
                             <tr>
                                 <td t-esc="row.name"/>
                                 <td t-esc="row.salesperson"/>
-                                <td t-esc="row.stage"/>
+                                <td>
+                                    <span t-attf-class="badge badge-{{row.stage.toLowerCase()}}">
+                                        <t t-esc="row.stage"/>
+                                    </span>
+                                </td>
                                 <td t-esc="row.value"/>
                                 <td t-esc="row.probability"/>
                             </tr>
@@ -40,26 +50,31 @@
                     </tbody>
                 </table>
             </div>
-            <div class="border m-2 p-2">
-                <table class="table ">
+
+            <div class="border p-2">
+                <table class="table">
                     <thead class="table-dark">
-                        <th>
-                            <td>KPI Card</td>
-                            <td>Computation</td>
-                        </th>
+                        <tr>
+                            <th>KPI Card</th>
+                            <th>Computation</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Total Leads</td> <td t-esc="TotalLeads"/>
+                            <td>Total Leads</td>
+                            <td t-esc="TotalLeads"/>
                         </tr>
                         <tr>
-                            <td>Pipeline Value</td> <td t-esc="PipelineValue"/>
+                            <td>Pipeline Value</td>
+                            <td t-esc="PipelineValue"/>
                         </tr>
                         <tr>
-                            <td>Won Revenue</td> <td t-esc="WonRevenue"/>
+                            <td>Won Revenue</td>
+                            <td t-esc="WonRevenue"/>
                         </tr>
                         <tr>
-                            <td>Avg Probability</td> <td t-esc="AvgProbability"/>
+                            <td>Avg Probability</td>
+                            <td t-esc="AvgProbability"/>
                         </tr>
                     </tbody>
                 </table>
