@@ -1,5 +1,11 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.client_action">
-        Client Action
+        Clicker Game
+        <div class="border">
+            Clicks :<t t-esc="clicker.state.clicks"/>
+            <button class="btn btn-primary" t-on-click="() => clicker.increment()">
+                Increment
+            </button>
+        </div>
     </t>
 </templates>
