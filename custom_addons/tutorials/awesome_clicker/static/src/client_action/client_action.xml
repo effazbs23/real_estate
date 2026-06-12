@@ -1,0 +1,5 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.client_action">
+        Client Action
+    </t>
+</templates>
