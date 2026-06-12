@@ -2,7 +2,7 @@
 
 import { reactive } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-import { humanNumber } from "human-id";
+import { humanNumber } from "@web/core/utils/numbers";
 
 const ClickerService = {
     start(){

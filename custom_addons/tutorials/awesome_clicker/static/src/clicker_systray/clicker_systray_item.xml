@@ -2,11 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.ClickerSystray">
         <div class="border o_nav_entry">
-<<<<<<< Updated upstream
             Clicks: <ClickValue />
-=======
-            Clicks: <t t-esc="this.clicker.getClicks"/>
->>>>>>> Stashed changes
             <button class="btn btn-secondary" t-on-click="() => clicker.increment()">
                 <i class="fa fa-lg fa-plus"></i>
             </button>
