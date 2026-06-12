@@ -1,0 +1,7 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.click_value">
+        <div class="m-2 p-2">
+            <t t-esc="clickValue"/>
+        </div>
+    </t>
+</templates>

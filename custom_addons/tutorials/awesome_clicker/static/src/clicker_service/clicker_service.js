@@ -2,12 +2,16 @@
 
 import { reactive } from "@odoo/owl";
 import { registry } from "@web/core/registry";
+import { humanNumber } from "human-id";
 
 const ClickerService = {
     start(){
-        const state = reactive({ clicks: 0 });
+        const state = reactive({ clicks: 1000 });
         function increment(){
             state.clicks++;
+        }
+        function getClicks(){
+            return humanNumber(state.clicks);
         }
         return { state, increment };
     }
