@@ -2,7 +2,7 @@
     <t t-name="awesome_clicker.client_action">
         Clicker Game
         <div class="border">
-            Clicks :<t t-esc="clicker.state.clicks"/>
+            Clicks :<ClickValue />
             <button class="btn btn-primary" t-on-click="() => clicker.increment()">
                 Increment
             </button>
