@@ -6,17 +6,34 @@ import { humanNumber } from "@web/core/utils/numbers";
 
 const ClickerService = {
     start(){
-        const state = reactive({ clicks: 1000 });
+        const state = reactive({
+            clicks: 1000,
+            level: 1,
+            clickBots: 0
+        });
         function increment(){
             state.clicks++;
         }
         function getClicks(){
             return humanNumber(state.clicks);
         }
-        return { state, increment };
+        function incrementLevel(){
+            state.level++;
+        }
+        function buyClickBot(){
+            if (state.clicks >= 1000) {
+                state.clicks -= 1000;
+                state.clickBots++;
+            }
+        }
+
+        setInterval(() => {
+            state.clicks += state.clickBots * 10;
+        }, 10000);
+        return { state, increment, getClicks, incrementLevel, buyClickBot };
     }
 
 
 };
 
-registry.category("services").add("clicker", ClickerService)
+registry.category("services").add("clicker", ClickerService);

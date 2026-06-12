@@ -1,11 +1,19 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.client_action">
         Clicker Game
-        <div class="border">
+        <div class="border p-2 m-2">
             Clicks :<ClickValue />
-            <button class="btn btn-primary" t-on-click="() => clicker.increment()">
+            <button class="btn btn-primary m-2" t-on-click="() => clicker.increment()">
                 Increment
             </button>
+            <t t-if="clicker.state.level >= 1">
+                ClickBots : <t t-esc="clicker.state.clickBots"/>
+            </t>
+            <t t-if="clicker.state.clicks >= 1000">
+                <button class="btn btn-primary m-2" t-on-click="() => clicker.buyClickBot()">
+                    Buy
+                </button>
+            </t>
         </div>
     </t>
 </templates>
