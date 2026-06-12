@@ -1,6 +1,7 @@
 import { registry } from "@web/core/registry";
-import { Component, useState } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
+import { useClicker } from "../use_clicker";
 
 export class ClickerSystray extends Component {
     static template = "awesome_clicker.ClickerSystray";
@@ -8,7 +9,7 @@ export class ClickerSystray extends Component {
 
     setup() {
 
-        this.clicker = useState(useService("clicker"));
+        this.clicker = useClicker();
         this.action = useService("action");
     }
 
