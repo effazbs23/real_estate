@@ -10,8 +10,15 @@
                 ClickBots : <t t-esc="clicker.clickBots"/>
             </t>
             <t t-if="clicker.clicks >= 1000">
+                <p>0x clickbot (10 clicks/10 seconds)</p>
                 <button class="btn btn-primary m-2" t-on-click="() => clicker.buyClickBot()">
-                    Buy
+                    Buy ClickBot (1000 clicks)
+                </button>
+            </t>
+            <t t-if="clicker.clicks >= 5000">
+                <p>2x bigbot (100 clicks/10 seconds)</p>
+                <button class="btn btn-primary m-2" t-on-click="() => clicker.buyBigBot()">
+                    Buy ClickBot (5000 clicks)
                 </button>
             </t>
         </div>

@@ -13,6 +13,12 @@ const ClickerService = {
                 type: "rainbow_man",
             });
         })
+        bus.addEventListener("Milestone_5k", () => {
+            services.effect.add({
+                message: "Milestone reached! you can now buy bigbots",
+                type: "rainbow_man",
+            });
+        })
         return model;
     }
 
