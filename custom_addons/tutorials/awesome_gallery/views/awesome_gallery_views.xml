@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="contacts.action_contacts" model="ir.actions.act_window">
+            <field name="view_mode">kanban,list,form,activity,gallery</field>
+        </record>
+
+        <record id="view_contacts_gallery" model="ir.ui.view">
+            <field name="name">res.partner.gallery</field>
+            <field name="model">res.partner</field>
+            <field name="type">gallery</field>
+            <field name="arch" type="xml">
+                <gallery>
+                    <p>Gallery View</p>
+                </gallery>
+            </field>
+        </record>
+    </data>
+</odoo>
