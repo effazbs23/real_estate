@@ -2,14 +2,16 @@ import {Reactive} from "@web/core/utils/reactive";
 import {humanNumber} from "@web/core/utils/numbers";
 import { EventBus } from "@odoo/owl";
 import {ClickValue} from "../click_value/click_value";
+import { rewards } from "../click_rewards";
 
 export class ClickerModel extends Reactive {
     constructor() {
         super();
-        this.clicks = 4990;
+        this.clicks = 99993;
         this.level = 0;
         this.clickBots = 0;
         this.bigBots = 0;
+        this.power = 1;
         this.bus = new EventBus();
 
 
@@ -18,8 +20,8 @@ export class ClickerModel extends Reactive {
             () => this.increment(1)
         );
         setInterval(() => {
-            this.clicks += this.clickBots * 10;
-            this.clicks += this.bigBots * 100;
+            this.clicks += this.clickBots * 10 * this.power;
+            this.clicks += this.bigBots * 100 * this.power;
         }, 10000);
     }
 
@@ -31,6 +33,10 @@ export class ClickerModel extends Reactive {
         }
         if(this.level < 2 && this.clicks >= 5000){
             this.bus.trigger("Milestone_5k");
+            this.level++;
+        }
+        if(this.level < 3 && this.clicks >= 100000){
+            this.bus.trigger("Milestone_100k");
             this.level++;
         }
     }
@@ -53,6 +59,14 @@ export class ClickerModel extends Reactive {
             this.bigBots++;
         }
     }
+    buyPowerClicks(){
+        const powerPrice = 50000;
+        if (this.clicks >= powerPrice) {
+            this.clicks -= powerPrice;
+            this.power++;
+        }
+    }
+
 
 
 

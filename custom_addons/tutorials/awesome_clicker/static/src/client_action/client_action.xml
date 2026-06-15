@@ -21,6 +21,12 @@
                     Buy ClickBot (5000 clicks)
                 </button>
             </t>
+            <t t-if="clicker.clicks >= 100000">
+                <p>nx Power Clicks </p>
+                <button class="btn btn-primary m-2" t-on-click="() => clicker.buyPowerClicks()">
+                    Buy PowerClicks
+                </button>
+            </t>
         </div>
     </t>
 </templates>
