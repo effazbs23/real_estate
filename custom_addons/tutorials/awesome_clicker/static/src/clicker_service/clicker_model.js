@@ -3,6 +3,7 @@ import {humanNumber} from "@web/core/utils/numbers";
 import { EventBus } from "@odoo/owl";
 import {ClickValue} from "../click_value/click_value";
 import { rewards } from "../click_rewards";
+import {choose} from "../utils";
 
 export class ClickerModel extends Reactive {
     constructor() {
@@ -65,6 +66,21 @@ export class ClickerModel extends Reactive {
             this.clicks -= powerPrice;
             this.power++;
         }
+    }
+
+    getRewards(){
+        const availableRewards = [];
+        for(const reward of rewards){
+            if(!reward.minLevel || this.level >= reward.minLevel){
+                if(!reward.maxLevel || this.level <= reward.maxLevel){
+                    availableRewards.push(reward);
+                }
+            }
+        }
+        const reward = choose(availableRewards);
+        this.bus.trigger("REWARD", reward);
+
+        return reward;
     }
 
 
