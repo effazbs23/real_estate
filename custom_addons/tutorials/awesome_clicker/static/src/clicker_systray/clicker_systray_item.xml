@@ -3,7 +3,7 @@
     <t t-name="awesome_clicker.ClickerSystray">
         <div class="border o_nav_entry">
             Clicks: <ClickValue />
-            <button class="btn btn-secondary" t-on-click="() => clicker.increment()">
+            <button class="btn btn-secondary" t-on-click="() => clicker.increment(1)">
                 <i class="fa fa-lg fa-plus"></i>
             </button>
             <button class="btn btn-secondary" t-on-click="openClientAction">

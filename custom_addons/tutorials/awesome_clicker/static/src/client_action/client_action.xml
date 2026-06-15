@@ -3,13 +3,13 @@
         Clicker Game
         <div class="border p-2 m-2">
             Clicks :<ClickValue />
-            <button class="btn btn-primary m-2" t-on-click="() => clicker.increment()">
+            <button class="btn btn-primary m-2" t-on-click="() => clicker.increment(1)">
                 Increment
             </button>
-            <t t-if="clicker.state.level >= 1">
-                ClickBots : <t t-esc="clicker.state.clickBots"/>
+            <t t-if="clicker.level >= 1">
+                ClickBots : <t t-esc="clicker.clickBots"/>
             </t>
-            <t t-if="clicker.state.clicks >= 1000">
+            <t t-if="clicker.clicks >= 1000">
                 <button class="btn btn-primary m-2" t-on-click="() => clicker.buyClickBot()">
                     Buy
                 </button>
