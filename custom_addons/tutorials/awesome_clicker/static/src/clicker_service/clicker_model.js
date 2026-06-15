@@ -1,12 +1,15 @@
 import {Reactive} from "@web/core/utils/reactive";
 import {humanNumber} from "@web/core/utils/numbers";
+import { EventBus } from "@odoo/owl";
+import {ClickValue} from "../click_value/click_value";
 
 export class ClickerModel extends Reactive {
     constructor() {
         super();
-        this.clicks = 0;
+        this.clicks = 990;
         this.level = 0;
         this.clickBots = 0;
+        this.bus = new EventBus();
 
 
         document.addEventListener(
@@ -20,7 +23,8 @@ export class ClickerModel extends Reactive {
 
     increment(inc) {
         this.clicks += inc;
-        if(this.level < 1 && this.clicks <= 1000){
+        if(this.level < 1 && this.clicks >= 1000){
+            this.bus.trigger("Milestone_1k");
             this.level++;
         }
     }
@@ -36,6 +40,7 @@ export class ClickerModel extends Reactive {
             this.clickBots++;
         }
     }
+
 
 
 }
