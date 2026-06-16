@@ -19,6 +19,12 @@ const ClickerService = {
                 type: "rainbow_man",
             });
         })
+        bus.addEventListener("Milestone_1m", () => {
+            services.effect.add({
+                message: "Milestone reached! you can now buy Trees",
+                type: "rainbow_man",
+            });
+        })
 
         bus.addEventListener("REWARD", (ev) => {
             const reward = ev.detail;
