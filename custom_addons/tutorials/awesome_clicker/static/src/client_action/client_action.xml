@@ -1,37 +1,42 @@
 <templates xml:space="preserve">
     <t t-name="awesome_clicker.client_action">
-        Clicker Game
-        <div class="border p-2 m-2">
-            Clicks :<ClickValue />
-            <button class="btn btn-primary m-2" t-on-click="() => clicker.increment(1)">
+        <h2>Clicker Game</h2>
+        Clicks :
+        <ClickValue/>
+        <button class="btn btn-primary m-2" t-on-click="() => clicker.increment(1)">
                 Increment
             </button>
 
-            <t t-if="clicker.level >= 1">
+        <t t-if="clicker.level >= 1">
                 ClickBots : <t t-esc="clicker.clickBots"/>
             </t>
-
-            <t t-if="clicker.level >= 4" class="m-2 p-2">
-                <h2>Trees</h2>
-                <t t-foreach="clicker.trees" t-as="tree" t-key="tree">
-                    <div class="m-2 p-2 border card">
-                        <p><t t-esc="tree_value.number"/>x <t t-esc="tree"/>Tree (1x <t t-esc="tree"/>/30seconds) </p>
-                        <button class="btn btn-primary" t-on-click="() => clicker.buyTree(tree)">
-                            Buy <t t-esc="tree"/>(<t t-esc="tree_value.price"/> clicks)
+        <Notebook>
+            <t t-set-slot="trees" title="Trees" isVisible="true">
+                <t t-if="clicker.level >= 4" class="m-2 p-2">
+                    <h2>Trees</h2>
+                    <t t-foreach="clicker.trees" t-as="tree" t-key="tree">
+                        <div class="m-2 p-2 border card">
+                            <p><t t-esc="tree_value.number"/>x<t t-esc="tree"/>Tree (1x<t t-esc="tree"/>/30seconds) </p>
+                            <button class="btn btn-primary" t-on-click="() => clicker.buyTree(tree)">
+                                Buy <t t-esc="tree"/>(
+                                <t t-esc="tree_value.price"/>
+                                clicks)
                         </button>
 
                     </div>
                 </t>
-                <h2>Fruits</h2>
-                <t t-foreach="clicker.fruits" t-as="fruit" t-key="fruit">
+                    <h2>Fruits</h2>
+                    <t t-foreach="clicker.fruits" t-as="fruit" t-key="fruit">
                     <div class="border m-2 p-2 card">
                         <p>
-                            <t t-esc="fruit_value"/>x <t t-esc="fruit"/>
+                            <t t-esc="fruit_value"/>x
+                            <t t-esc="fruit"/>
                         </p>
                     </div>
                 </t>
             </t>
-
+        </t>
+            <t t-set-slot="clicks" title="Clicks" isVisible="true">
             <t t-if="clicker.clicks >= 1000">
                 <p>0x clickbot (10 clicks/10 seconds)</p>
                 <button class="btn btn-primary m-2" t-on-click="() => clicker.buyClickBot()">
@@ -39,23 +44,23 @@
                 </button>
             </t>
 
-            <t t-if="clicker.clicks >= 5000">
+                <t t-if="clicker.clicks >= 5000">
                 <p>2x bigbot (100 clicks/10 seconds)</p>
-                <button class="btn btn-primary m-2" t-on-click="() => clicker.buyBigBot()">
+                    <button class="btn btn-primary m-2" t-on-click="() => clicker.buyBigBot()">
                     Buy ClickBot (5000 clicks)
                 </button>
             </t>
 
-            <t t-if="clicker.clicks >= 100000">
+                <t t-if="clicker.clicks >= 100000">
                 <p>nx Power Clicks </p>
-                <button class="btn btn-primary m-2" t-on-click="() => clicker.buyPowerClicks()">
+                    <button class="btn btn-primary m-2" t-on-click="() => clicker.buyPowerClicks()">
                     Buy PowerClicks
                 </button>
+            </t>
             </t>
 
 
 
-
-        </div>
+        </Notebook>
     </t>
 </templates>
