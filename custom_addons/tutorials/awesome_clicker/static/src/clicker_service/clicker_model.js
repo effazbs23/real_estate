@@ -68,7 +68,24 @@ export class ClickerModel extends Reactive {
             this.level++;
         }
     }
-
+    toJSON(){
+        const json = Object.assign({},this);
+        delete json["bus"];
+        return json;
+    }
+    static fromJSON(json) {
+        const clicker = new ClickerModel();
+        Object.assign(clicker, json);
+        clicker.trees = Object.assign({
+            pear: { number: 0, level: 4, price: 1000000 },
+            cherry: { number: 0, level: 4, price: 1000000 }
+        }, json.trees);
+        clicker.fruits = Object.assign({
+            pear: 0,
+            cherry: 0
+        }, json.fruits);
+        return clicker;
+    }
     getClicks() {
         return humanNumber(this.clicks);
     }
