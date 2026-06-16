@@ -1,0 +1,50 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.attendanceDashboard">
+        <div class="border p-2 m-2 ">
+            <input type="text"
+                   class=""
+                   placeholder="Search"
+                   t-att-value="data.searchQuery"
+                   t-on-input="onSearchInput"
+            />
+        </div>
+
+        <div class="m-3 p-2 border">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Employee</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Worked Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-if="totalCount == 0">
+                        <td colspan="4" class="text-center text-muted">No attendance records found.</td>
+                    </tr>
+                    <t t-else="" t-foreach="filteredData" t-as="row" t-key="row.id">
+                        <tr t-att-class="getRowColor(row.hours)">
+                            <td><t t-esc="row.name"/></td>
+                            <td><t t-esc="row.check_in"/></td>
+                            <td><t t-esc="row.check_out"/></td>
+                            <td><t t-esc="row.hours.toFixed(2)"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+
+            <div class="m-2 p-2 text-center">
+                <p>
+                Total Employees: <t t-esc="totalCount"/>
+                    <br/>
+                    Total Worked Hours:
+                    <t t-esc="totalWorkHours"/>
+                    <br/>
+                    Average Hours:
+                    <t t-esc="avgWorkHours"/>
+                </p>
+            </div>
+        </div>
+    </t>
+</templates>

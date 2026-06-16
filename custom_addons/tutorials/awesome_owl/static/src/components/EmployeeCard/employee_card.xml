@@ -1,0 +1,16 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_owl.employeeCard">
+        <div class="border p-2 m-2" t-att-class="getAttendanceColor()">
+            <p>
+                Name:
+                <t t-esc="props.emp.employeeName"/>
+                <br/>
+                Working Hours:
+                <t t-esc="props.emp.todayHour.toFixed(2)"/>
+                <br/>
+                Present:
+                <t t-esc="props.emp.attendanceStatus"/>
+            </p>
+        </div>
+    </t>
+</templates>
