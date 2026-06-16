@@ -1,5 +1,15 @@
-export const CURRENT_VERSION = 1.0;
-export const migrations = [];
+export const CURRENT_VERSION = 2.0;
+export const migrations = [{
+    fromVersion : 1.0,
+    toVersion : 2.0,
+    apply: (state) => {
+        state.trees.peach = {
+            price : 1500000,
+            level: 4,
+            number: 0
+        }
+    }
+}];
 
 export function migrate(localState) {
     if (!localState) {
