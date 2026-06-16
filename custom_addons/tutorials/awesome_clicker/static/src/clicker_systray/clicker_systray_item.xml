@@ -13,7 +13,7 @@
                         <button class="btn btn-secondary" t-on-click="this.openClientAction"> Open the clicker game </button>
                     </DropdownItem>
                     <DropdownItem>
-                        <button class="btn btn-secondary" t-on-click="() => this.clicker.buyClickBot"> Buy a ClickBot </button>
+                        <button class="btn btn-secondary" t-on-click="() => this.clicker.buyClickBot()"> Buy a ClickBot </button>
                     </DropdownItem>
                     <DropdownItem t-foreach="this.clicker.trees" t-as="tree" t-key="tree">
                         <t t-esc="tree_value.number"/>x
