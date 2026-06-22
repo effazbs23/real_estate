@@ -1,38 +1,20 @@
 /**odoo-module**/
 
-import { Component, onWillStart, onWillUpdateProps, useState } from "@odoo/owl";
+import { Component, onWillStart, onWillUpdateProps } from "@odoo/owl";
 import { Layout } from "@web/search/layout";
 import { useService } from "@web/core/utils/hooks";
-import { KeepLast } from "@web/core/utils/concurrency";
+import { GalleryModel } from "./gallery_model";
+import { GalleryRenderer } from "./gallery_renderer";
 
 export class GalleryController extends Component {
     static template = "awesome_gallery.GalleryController";
-    static components = { Layout };
+    static components = { Layout, GalleryRenderer };
 
     setup() {
-        this.orm = useService("orm");
-        this.keepLast = new KeepLast();
-        this.state = useState({ images: [] });
-        const { domain, resModel } = this.props;
-        onWillStart(() => this.loadImages(domain));
-        onWillUpdateProps((nextProps) => this.loadImages(nextProps.domain));
-    }
-
-    async loadImages(domain) {
-        const { length, records } = await this.keepLast.add(
-            this.orm.webSearchRead(
-                this.props.resModel,
-                domain,
-                {
-                    specification: {
-                        [this.props.archInfo.imageField]: {},
-                    },
-                    context: {
-                        bin_size: true,
-                    },
-                },
-            ),
-        );
-        this.state.images = records;
+        const orm = useService("orm");
+        this.model = new GalleryModel(orm, this.props.resModel, this.props.archInfo);
+        const { domain } = this.props;
+        onWillStart(() => this.model.loadImages(domain));
+        onWillUpdateProps((nextProps) => this.model.loadImages(nextProps.domain));
     }
 }

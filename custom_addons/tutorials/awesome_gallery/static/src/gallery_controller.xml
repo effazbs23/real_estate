@@ -2,14 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="awesome_gallery.GalleryController">
         <Layout display="props.display">
-            <div class="o_gallery_view">
-                <t t-foreach="state.images" t-as="image" t-key="image.id">
-                    <div class="o_gallery_item">
-                        <span>ID: <t t-esc="image.id"/></span> |
-                        <span>Size: <t t-esc="image[props.archInfo.imageField]"/></span>
-                    </div>
-                </t>
-            </div>
+            <GalleryRenderer images="model.images" archInfo="props.archInfo"/>
         </Layout>
     </t>
 </templates>
