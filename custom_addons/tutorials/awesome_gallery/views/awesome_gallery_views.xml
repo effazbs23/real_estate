@@ -10,7 +10,7 @@
             <field name="model">res.partner</field>
             <field name="type">gallery</field>
             <field name="arch" type="xml">
-                <gallery image_field="avatar_128">
+                <gallery image_field="avatar_128" tooltip_field="display_name">
                     <field name="name"/>
                 </gallery>
             </field>

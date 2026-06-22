@@ -12,18 +12,17 @@ export class GalleryModel {
     }
 
     async loadImages(domain) {
+        const specification = {
+            [this.archInfo.imageField]: {},
+        };
+        if (this.archInfo.tooltipField) {
+            specification[this.archInfo.tooltipField] = {};
+        }
         const { records } = await this.keepLast.add(
             this.orm.webSearchRead(
                 this.resModel,
                 domain,
-                {
-                    specification: {
-                        [this.archInfo.imageField]: {},
-                    },
-                    context: {
-                        bin_size: true,
-                    },
-                },
+                { specification, context: { bin_size: true } },
             ),
         );
         this.images = records;
