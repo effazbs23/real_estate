@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="gallery">
+        <element name="gallery">
+            <attribute name="image_field"/>
+            <optional>
+                <attribute name="tooltip_field"/>
+            </optional>
+            <zeroOrMore>
+                <element>
+                    <anyName/>
+                    <zeroOrMore>
+                        <attribute>
+                            <anyName/>
+                        </attribute>
+                    </zeroOrMore>
+                    <zeroOrMore>
+                        <text/>
+                    </zeroOrMore>
+                </element>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <start>
+        <ref name="gallery"/>
+    </start>
+
+</grammar>
