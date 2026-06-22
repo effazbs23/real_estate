@@ -5,10 +5,10 @@
             <t t-foreach="props.images" t-as="image" t-key="image.id">
                 <div class="o_gallery_item">
                     <t t-if="image[props.archInfo.imageField]">
-                        <img t-att-src="imageUrl(image)" alt="Image"/>
+                        <img t-att-src="imageUrl(image)" alt="Image" t-on-click="() => props.openRecord(image)"/>
                     </t>
                     <t t-else="">
-                        <div class="o_gallery_empty">No Image</div>
+                        <div class="o_gallery_empty" t-on-click="() => props.openRecord(image)">No Image</div>
                     </t>
                 </div>
             </t>
