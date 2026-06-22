@@ -12,6 +12,7 @@
     ],
     'assets': {
         'web.assets_backend': [
+            'awesome_gallery/static/src/gallery_arch_parser.js',
             'awesome_gallery/static/src/gallery_controller.js',
             'awesome_gallery/static/src/gallery_controller.xml',
             'awesome_gallery/static/src/gallery_view.js',

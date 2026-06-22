@@ -10,8 +10,8 @@
             <field name="model">res.partner</field>
             <field name="type">gallery</field>
             <field name="arch" type="xml">
-                <gallery>
-                    <p>Gallery View</p>
+                <gallery image_field="avatar_128">
+                    <field name="name"/>
                 </gallery>
             </field>
         </record>
