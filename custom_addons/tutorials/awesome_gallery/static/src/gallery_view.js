@@ -16,11 +16,13 @@ export const galleryView = {
     Renderer: GalleryRenderer,
 
     props: (genericProps, view) => {
-        const { ArchParser } = view;
+        const { ArchParser, Model, Renderer } = view;
         const { arch } = genericProps;
         return {
             ...genericProps,
             archInfo: new ArchParser().parse(arch),
+            Model,
+            Renderer,
         };
     },
 };
