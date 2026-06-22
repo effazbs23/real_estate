@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-name="awesome_gallery.GalleryController">
         <Layout display="props.display">
-            <t t-component="props.Renderer" images="model.images" archInfo="props.archInfo"/>
+            <t t-component="props.Renderer" images="model.images" archInfo="props.archInfo" resModel="props.resModel"/>
         </Layout>
     </t>
 </templates>

@@ -4,8 +4,12 @@
         <div class="o_gallery_view">
             <t t-foreach="props.images" t-as="image" t-key="image.id">
                 <div class="o_gallery_item">
-                    <span>ID: <t t-esc="image.id"/></span> |
-                    <span>Size: <t t-esc="image[props.archInfo.imageField]"/></span>
+                    <t t-if="image[props.archInfo.imageField]">
+                        <img t-att-src="imageUrl(image)" alt="Image"/>
+                    </t>
+                    <t t-else="">
+                        <div class="o_gallery_empty">No Image</div>
+                    </t>
                 </div>
             </t>
         </div>
