@@ -16,8 +16,8 @@
                     </a>
                 </li>
             </ul>
-            <Pager size="filteredCustomers.length" offset="state.offset"
-                   limit="limit" onUpdate="(newOffset) => this.onPagerUpdate(newOffset)"/>
+            <Pager total="filteredCustomers.length" offset="state.offset"
+                   limit="limit" onUpdate="({ offset }) => this.onPagerUpdate(offset)"/>
         </div>
     </t>
     <t t-name="awesome_kanban.KanbanView">
