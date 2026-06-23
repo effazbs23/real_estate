@@ -3,17 +3,21 @@
     <t t-name="awesome_kanban.CustomerList" priority="1">
         <div>
             <label>
-                <input type="checkbox" t-model="state.displayActiveCustomers"/>
+                <input type="checkbox" t-model="state.displayActiveCustomers"
+                       t-on-click="() => state.offset = 0"/>
                 Active customers
             </label>
-            <input type="text" t-model="state.searchString" placeholder="Search..."/>
+            <input type="text" t-model="state.searchString"
+                   t-on-input="() => state.offset = 0" placeholder="Search..."/>
             <ul>
-                <li t-foreach="customerList" t-as="customer" t-key="customer.id">
+                <li t-foreach="displayedCustomers" t-as="customer" t-key="customer.id">
                     <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">
                         <t t-esc="customer.display_name"/>
                     </a>
                 </li>
             </ul>
+            <Pager size="filteredCustomers.length" offset="state.offset"
+                   limit="limit" onUpdate="(newOffset) => this.onPagerUpdate(newOffset)"/>
         </div>
     </t>
     <t t-extend="web.KanbanView">
