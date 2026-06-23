@@ -6,6 +6,7 @@ import { CustomerList } from './customer_list';
 const AWESOME_KANBAN_KEY = Symbol('isFromAwesomeKanban');
 
 class AwesomeKanbanController extends KanbanController {
+    static template = 'awesome_kanban.KanbanView';
     static components = {
         ...KanbanController.components,
         CustomerList,
