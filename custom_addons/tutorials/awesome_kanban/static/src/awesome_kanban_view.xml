@@ -3,12 +3,10 @@
     <t t-name="awesome_kanban.CustomerList" priority="1">
         <div>
             <label>
-                <input type="checkbox" t-att-checked="state.displayActiveCustomers"
-                       t-on-change="() => state.displayActiveCustomers = !state.displayActiveCustomers"/>
+                <input type="checkbox" t-model="state.displayActiveCustomers"/>
                 Active customers
             </label>
-            <input type="text" t-on-input="(e) => state.searchString = e.target.value"
-                   placeholder="Search..."/>
+            <input type="text" t-model="state.searchString" placeholder="Search..."/>
             <ul>
                 <li t-foreach="customerList" t-as="customer" t-key="customer.id">
                     <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">
