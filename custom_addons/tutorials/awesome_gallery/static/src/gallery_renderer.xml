@@ -10,11 +10,6 @@
                     <t t-else="">
                         <div class="o_gallery_empty" t-on-click="() => props.openRecord(image)" t-att-data-tooltip="image[props.archInfo.tooltipField]"/>
                     </t>
-                    <FileUploader onUploaded="(file) => onUploaded(image, file)">
-                        <t t-set-slot="toggler">
-                            <button class="o_gallery_upload_button">Upload</button>
-                        </t>
-                    </FileUploader>
                 </div>
             </t>
         </div>
