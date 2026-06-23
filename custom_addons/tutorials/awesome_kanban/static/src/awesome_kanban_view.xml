@@ -13,7 +13,7 @@
     </t>
     <t t-extend="web.KanbanView">
         <t t-jquery="//t[@t-component='props.Renderer']" t-operation="before">
-            <CustomerList selectCustomer="() => {}"/>
+            <CustomerList selectCustomer="(id, name) => this.selectCustomer(id, name)"/>
         </t>
     </t>
 </templates>
