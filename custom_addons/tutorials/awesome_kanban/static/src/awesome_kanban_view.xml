@@ -7,6 +7,8 @@
                        t-on-change="() => state.displayActiveCustomers = !state.displayActiveCustomers"/>
                 Active customers
             </label>
+            <input type="text" t-on-input="(e) => state.searchString = e.target.value"
+                   placeholder="Search..."/>
             <ul>
                 <li t-foreach="customerList" t-as="customer" t-key="customer.id">
                     <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">

@@ -1,5 +1,6 @@
 import { Component, useState, onWillStart } from '@odoo/owl';
 import { useService } from '@web/core/utils/hooks';
+import { fuzzyLookup } from '@web/core/utils/search';
 
 export class CustomerList extends Component {
     static template = 'awesome_kanban.CustomerList';
@@ -12,6 +13,7 @@ export class CustomerList extends Component {
         this.state = useState({
             customers: [],
             displayActiveCustomers: false,
+            searchString: '',
         });
         onWillStart(async () => {
             const customers = await this.orm.searchRead(
@@ -27,6 +29,9 @@ export class CustomerList extends Component {
             customers = customers.filter(
                 (c) => c.opportunity_ids && c.opportunity_ids.length > 0
             );
+        }
+        if (this.state.searchString) {
+            customers = fuzzyLookup(customers, this.state.searchString, (c) => c.display_name);
         }
         return customers;
     }
