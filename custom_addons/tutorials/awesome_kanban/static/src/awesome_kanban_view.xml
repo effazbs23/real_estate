@@ -2,8 +2,13 @@
 <templates xml:space="preserve">
     <t t-name="awesome_kanban.CustomerList" priority="1">
         <div>
+            <label>
+                <input type="checkbox" t-att-checked="state.displayActiveCustomers"
+                       t-on-change="() => state.displayActiveCustomers = !state.displayActiveCustomers"/>
+                Active customers
+            </label>
             <ul>
-                <li t-foreach="state.customers" t-as="customer" t-key="customer.id">
+                <li t-foreach="customerList" t-as="customer" t-key="customer.id">
                     <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">
                         <t t-esc="customer.display_name"/>
                     </a>
