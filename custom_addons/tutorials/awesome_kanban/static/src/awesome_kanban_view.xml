@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="awesome_kanban.CustomerList" priority="1">
-        <div>Customer List</div>
+        <div>
+            <ul>
+                <li t-foreach="state.customers" t-as="customer" t-key="customer.id">
+                    <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">
+                        <t t-esc="customer.display_name"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </t>
     <t t-extend="web.KanbanView">
         <t t-jquery="//t[@t-component='props.Renderer']" t-operation="before">
