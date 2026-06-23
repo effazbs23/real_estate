@@ -19,8 +19,10 @@ export class GalleryModel {
             [this.archInfo.imageField]: {},
             write_date: {},
         };
-        if (this.archInfo.tooltipField) {
-            specification[this.archInfo.tooltipField] = {};
+        if (this.archInfo.fields) {
+            for (const fieldName of this.archInfo.fields) {
+                specification[fieldName] = {};
+            }
         }
         const { length, records } = await this.keepLast.add(
             this.orm.webSearchRead(

@@ -9,17 +9,36 @@
                 <attribute name="tooltip_field"/>
             </optional>
             <zeroOrMore>
-                <element>
-                    <anyName/>
-                    <zeroOrMore>
-                        <attribute>
-                            <anyName/>
-                        </attribute>
-                    </zeroOrMore>
-                    <zeroOrMore>
-                        <text/>
-                    </zeroOrMore>
+                <element name="field">
+                    <attribute name="name"/>
                 </element>
+            </zeroOrMore>
+            <optional>
+                <ref name="tooltip-template"/>
+            </optional>
+        </element>
+    </define>
+
+    <define name="tooltip-template">
+        <element name="tooltip-template">
+            <zeroOrMore>
+                <text/>
+                <ref name="any"/>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <define name="any">
+        <element>
+            <anyName/>
+            <zeroOrMore>
+                <choice>
+                    <attribute>
+                        <anyName/>
+                    </attribute>
+                    <text/>
+                    <ref name="any"/>
+                </choice>
             </zeroOrMore>
         </element>
     </define>
