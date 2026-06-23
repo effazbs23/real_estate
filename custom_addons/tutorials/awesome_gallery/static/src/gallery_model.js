@@ -17,6 +17,7 @@ export class GalleryModel {
     async loadImages(domain) {
         const specification = {
             [this.archInfo.imageField]: {},
+            write_date: {},
         };
         if (this.archInfo.tooltipField) {
             specification[this.archInfo.tooltipField] = {};
