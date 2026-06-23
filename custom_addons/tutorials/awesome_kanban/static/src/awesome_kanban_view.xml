@@ -21,7 +21,7 @@
         </div>
     </t>
     <t t-name="awesome_kanban.KanbanView">
-        <div t-att-class="className" style="display: flex;">
+        <div t-att-class="className" t-ref="root" style="display: flex;">
             <div style="width: 300px; overflow: auto; border-right: 1px solid #ddd;">
                 <CustomerList selectCustomer="(id, name) => this.selectCustomer(id, name)"/>
             </div>
