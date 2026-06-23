@@ -35,7 +35,7 @@ export class CustomerList extends Component {
             );
         }
         if (this.state.searchString) {
-            customers = fuzzyLookup(customers, this.state.searchString, (c) => c.display_name);
+            customers = fuzzyLookup(this.state.searchString, customers, (c) => c.display_name);
         }
         return customers;
     }
