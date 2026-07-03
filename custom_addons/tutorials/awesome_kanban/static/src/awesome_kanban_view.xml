@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_kanban.CustomerList" priority="1">
+        <div>
+            <label>
+                <input type="checkbox" t-model="state.displayActiveCustomers"
+                       t-on-click="() => state.offset = 0"/>
+                Active customers
+            </label>
+            <input type="text" t-model="state.searchString"
+                   t-on-input="() => state.offset = 0" placeholder="Search..."/>
+            <ul>
+                <li t-foreach="displayedCustomers" t-as="customer" t-key="customer.id">
+                    <a t-on-click="() => props.selectCustomer(customer.id, customer.display_name)" href="#">
+                        <t t-esc="customer.display_name"/>
+                    </a>
+                </li>
+            </ul>
+            <Pager total="filteredCustomers.length" offset="state.offset"
+                   limit="limit" onUpdate="({ offset }) => this.onPagerUpdate(offset)"/>
+        </div>
+    </t>
+    <t t-name="awesome_kanban.KanbanView">
+        <div t-att-class="className" t-ref="root" style="display: flex;">
+            <div style="width: 300px; overflow: auto; border-right: 1px solid #ddd;">
+                <CustomerList selectCustomer="(id, name) => this.selectCustomer(id, name)"/>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+                <Layout className="model.useSampleModel ? 'o_view_sample_data' : ''" display="props.display">
+                    <t t-set-slot="control-panel-create-button">
+                        <t t-if="canCreate and props.showButtons">
+                            <button type="button" class="btn btn-primary o-kanban-button-new" accesskey="c" t-on-click="() => this.createRecord()" data-bounce-button="">
+                                New
+                            </button>
+                        </t>
+                    </t>
+                    <t t-set-slot="layout-buttons">
+                        <t t-call="{{ props.buttonTemplate }}"/>
+                    </t>
+                    <t t-set-slot="control-panel-always-buttons">
+                        <t t-foreach="headerButtons" t-as="button" t-key="button.id" t-if="!evalViewModifier(button.invisible)">
+                            <MultiRecordViewButton
+                                t-if="button.display === 'always'"
+                                list="model.root"
+                                className="button.className"
+                                clickParams="button.clickParams"
+                                defaultRank="'btn-secondary'"
+                                domain="props.domain"
+                                icon="button.icon"
+                                string="button.string"
+                                title="button.title"
+                                attrs="button.attrs"
+                            />
+                        </t>
+                    </t>
+                    <t t-set-slot="control-panel-additional-actions">
+                        <CogMenu/>
+                    </t>
+                    <t t-set-slot="layout-actions">
+                        <SearchBar toggler="searchBarToggler"/>
+                    </t>
+                    <t t-set-slot="control-panel-navigation-additional">
+                        <t t-component="searchBarToggler.component" t-props="searchBarToggler.props"/>
+                    </t>
+                    <t t-component="props.Renderer"
+                        list="model.root"
+                        archInfo="props.archInfo"
+                        Compiler="props.Compiler"
+                        readonly="true"
+                        forceGlobalClick="props.forceGlobalClick"
+                        deleteRecord.bind="deleteRecord"
+                        openRecord.bind="openRecord"
+                        noContentHelp="props.info.noContentHelp"
+                        scrollTop.bind="scrollTop"
+                        canQuickCreate="canQuickCreate"
+                        quickCreateState="quickCreateState"
+                        progressBarState="progressBarState"
+                    />
+                </Layout>
+            </div>
+        </div>
+    </t>
+</templates>
