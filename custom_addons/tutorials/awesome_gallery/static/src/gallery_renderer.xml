@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_gallery.GalleryRenderer">
+        <div class="o_gallery_view">
+            <t t-foreach="props.images" t-as="image" t-key="image.id">
+                <GalleryImage image="image" archInfo="props.archInfo" resModel="props.resModel" openRecord="props.openRecord" tooltipTemplateName="tooltipTemplateName"/>
+            </t>
+        </div>
+    </t>
+    <t t-name="awesome_gallery.GalleryImage">
+        <div class="o_gallery_item" t-ref="imageTooltip">
+            <t t-if="props.image[props.archInfo.imageField]">
+                <img t-att-src="imageUrl(props.image)" alt="Image"
+                     t-on-click="() => props.openRecord(props.image)"/>
+            </t>
+            <t t-else="">
+                <div class="o_gallery_empty"
+                     t-on-click="() => props.openRecord(props.image)"/>
+            </t>
+            <FileUploader onUploaded="(file) => onUploaded(file)">
+                <t t-set-slot="toggler">
+                    <button class="o_gallery_upload_button">Upload</button>
+                </t>
+            </FileUploader>
+        </div>
+    </t>
+</templates>

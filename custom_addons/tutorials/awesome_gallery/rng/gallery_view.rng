@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+    <define name="gallery">
+        <element name="gallery">
+            <attribute name="image_field"/>
+            <optional>
+                <attribute name="tooltip_field"/>
+            </optional>
+            <zeroOrMore>
+                <element name="field">
+                    <attribute name="name"/>
+                </element>
+            </zeroOrMore>
+            <optional>
+                <ref name="tooltip-template"/>
+            </optional>
+        </element>
+    </define>
+
+    <define name="tooltip-template">
+        <element name="tooltip-template">
+            <zeroOrMore>
+                <text/>
+                <ref name="any"/>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <define name="any">
+        <element>
+            <anyName/>
+            <zeroOrMore>
+                <choice>
+                    <attribute>
+                        <anyName/>
+                    </attribute>
+                    <text/>
+                    <ref name="any"/>
+                </choice>
+            </zeroOrMore>
+        </element>
+    </define>
+
+    <start>
+        <ref name="gallery"/>
+    </start>
+
+</grammar>
